@@ -11,14 +11,20 @@ header($headerCSP);
 ?>
 <?php
 if (isset ($_POST['include'])) {
-$page[ 'body' ] .= "
+$page[ 'body' ] = "
 	<script src='" . $_POST['include'] . "'></script>
+	<form name="csp" method="POST">
+	<p>You can include scripts from external sources, examine the Content Security Policy and enter a URL to include here:</p>
+	<input size="50" type="text" name="include" value="" id="include" />
+	<input type="submit" value="Include" />
+</form>
 ";
-}
-$page[ 'body' ] .= '
+} else {
+$page[ 'body' ] = '
 <form name="csp" method="POST">
 	<p>You can include scripts from external sources, examine the Content Security Policy and enter a URL to include here:</p>
 	<input size="50" type="text" name="include" value="" id="include" />
 	<input type="submit" value="Include" />
 </form>
 ';
+}
